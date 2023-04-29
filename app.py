@@ -1,38 +1,38 @@
 from flask import Flask,request,jsonify
 import pickle
 import numpy as np
-model = pickle.load(open('model.pkl','rb'))
-app = Flask(__name__)
+model=pickle.load(open('model.pkl','rb'))
+app=Flask(__name__)
 @app.route('/')
 def home():
     return "Tourist place recommender"
 
-@app.route('/predict',methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
-    Sea_lover = request.form.get('Sea_lover')
-    Mountain_lover = request.form.get('Mountain_lover')
-    History_lover = request.form.get('History_lover')
-    Entertainment_lover = request.form.get('Entertainment_lover')
-    Need_hotel = request.form.get('Need_hotel')
-    Hotel_type = request.form.get('Hotel_type')
-    Need_transport = request.form.get('Need_transport')
-    Days = request.form.get('Days')
-    Place = request.form.get('Place')
-    Budget = request.form.get('Budget')
-    Travel_guide = request.form.get('Travel_guide')
-    Prefer_attractions = request.form.get('Prefer_attractions')
-    Traveling_partner = request.form.get('Traveling_partner')
-    Prefer_safety = request.form.get(' Prefer_safety')
-    Foodie = request.form.get('Foodie')
-    Tourist_friendly_place = request.form.get('Tourist_friendly_place?')
+    sea_lover = request.form.get('sea_lover')
+    mountain_lover = request.form.get('mountain_lover')
+    history_lover = request.form.get('history_lover')
+    entertainment_lover = request.form.get('entertainment_lover')
+    need_hotel = request.form.get('need_hotel')
+    hotel_type = request.form.get('hotel_type')
+    need_transport = request.form.get('need_transport')
+    days = request.form.get('days')
+    place = request.form.get('place')
+    budget = request.form.get('budget')
+    travel_guide = request.form.get('travel_guide')
+    prefer_attractions = request.form.get('prefer_attractions')
+    traveling_partner = request.form.get('traveling_partner')
+    prefer_safety = request.form.get('prefer_safety')
+    foodie = request.form.get('foodie')
+    tourist_friendly_place = request.form.get('tourist_friendly_place')
 
-    Starting_point = request.form.get('Starting_point')
+    starting_point = request.form.get('starting_point')
 
 
-    input_query=np.array([[Sea_lover,Mountain_lover,History_lover,Entertainment_lover,Need_hotel,Hotel_type,Need_transport,Days,Place,Budget,Travel_guide,Prefer_attractions,Traveling_partner,Prefer_safety,Foodie,Tourist_friendly_place,Starting_point]])
+    input_query=np.array([[sea_lover,mountain_lover,history_lover,entertainment_lover,need_hotel,hotel_type,need_transport,days,place,budget,travel_guide,prefer_attractions,traveling_partner,prefer_safety,foodie,tourist_friendly_place,starting_point]])
     result=model.predict(input_query)[0]
 
-    return jsonify({'Suitable trip':str(result)})
+    return jsonify({'suitable trip':str(result)})
 
 
 
