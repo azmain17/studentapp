@@ -4,29 +4,29 @@ import numpy as np
 model = pickle.load(open('model.pkl','rb'))
 app = Flask(__name__)
 @app.route('/')
-def index():
+def home():
     return "Tourist place recommender"
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    Sea_lover = request.form.get('Is that place right for a sea lover?')
-    Mountain_lover = request.form.get('Is that place right for a man who loves mountains?')
-    History_lover = request.form.get('Is that place right for a history lover?')
-    Entertainment_lover = request.form.get('Available Entertainment Facilities')
-    Need_hotel = request.form.get('Hotel needed')
-    Hotel_type = request.form.get('Hotel type')
-    Need_transport = request.form.get('Transport')
+    Sea_lover = request.form.get('Sea_lover')
+    Mountain_lover = request.form.get('Mountain_lover')
+    History_lover = request.form.get('History_lover')
+    Entertainment_lover = request.form.get('Entertainment_lover')
+    Need_hotel = request.form.get('Need_hotel')
+    Hotel_type = request.form.get('Hotel_type')
+    Need_transport = request.form.get('Need_transport')
     Days = request.form.get('Days')
     Place = request.form.get('Place')
     Budget = request.form.get('Budget')
-    Travel_guide = request.form.get('Travel guide')
-    Prefer_attractions = request.form.get('Is the place full of natural and man-made attractions?')
-    Traveling_partner = request.form.get('Traveling partner')
-    Prefer_safety = request.form.get('Is the place safe for a tourist?')
-    Foodie = request.form.get('Are there enough food stalls to enjoy various types of foods?')
-    Tourist_friendly_place = request.form.get('Are the local people friendly with tourists?')
+    Travel_guide = request.form.get('Travel_guide')
+    Prefer_attractions = request.form.get('Prefer_attractions')
+    Traveling_partner = request.form.get('Traveling_partner')
+    Prefer_safety = request.form.get(' Prefer_safety')
+    Foodie = request.form.get('Foodie')
+    Tourist_friendly_place = request.form.get('Tourist_friendly_place?')
 
-    Starting_point = request.form.get('Your starting point')
+    Starting_point = request.form.get('Starting_point')
 
 
     input_query=np.array([[Sea_lover,Mountain_lover,History_lover,Entertainment_lover,Need_hotel,Hotel_type,Need_transport,Days,Place,Budget,Travel_guide,Prefer_attractions,Traveling_partner,Prefer_safety,Foodie,Tourist_friendly_place,Starting_point]])
